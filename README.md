@@ -1,25 +1,25 @@
-PHP Wrapper For UptimeRobot.com
+Biblioteca PHP para a API UptimeRobot.com
 ==============
 
-This is a basic PHP wrapper for https://uptimerobot.com/api
+Para mais informações, acesse: https://uptimerobot.com/api
 
-## Prerequisites
-* Configure the $config apiKey
-* Must be running PHP >= 5.4
-* Format will be JSON & there will be no JSONCallback
+## Pre-requisitos
+* Configure a variável $config['apiKey']
+* Deve estar executando PHP >= 5.4
+* O Formato será JSON ou não haverá JSON Callback
 
 ##Composer
-Add this to your composer.json
+Inclua isso no seu arquivo composer.json
 
 ```JSON
 {
     "require": {
-        "ckdarby/php-uptimerobot": "@stable"
+        "codemaxbr/api-uptimerobot": "@stable"
     }
 }
 ```
 
-## Example
+## Exemplo
 
 ```PHP
 <?php
