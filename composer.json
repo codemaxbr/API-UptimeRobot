@@ -1,0 +1,23 @@
+{
+    "name": "codemaxbr/api-uptimerobot",
+    "description": "UptimeRobot for PHP",
+    "homepage": "https://github.com/codemaxbr/API-UptimeRobot/",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas Maia",
+            "email": "lucas.codemax@gmail.com",
+            "homepage": "https://github.com/codemaxbr/"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.0",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "UptimeRobot": "src/"
+        }
+    }
+}
