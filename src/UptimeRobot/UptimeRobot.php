@@ -16,27 +16,44 @@ class UptimeRobot{
 
     public $debug;
 
-    /**
-     * Initializes the API.
-     *
-     * @param array $config An array of configuration
-     * @param array $options An array of options for curl
-     *
-     * @throws \Exception Configuration is missing
-     */
-    public function __construct($config = array(), $options = array())
-    {
-        if (empty($config['apiKey'])) {
-            throw new \Exception('Falta API Key');
+    public function __construct($apiKey = ''){
+        if (empty($apiKey)) {
+            throw new Exception('Chave API não configurada.');
         }
 
-        // Setting apiKey, Format & noJsonCallBack
-        $this->args['apiKey'] = $config['apiKey'];
-        $this->args['format'] = 'json';
-        $this->args['noJsonCallback'] = 1;
-
-        // Set options for curl
+        $this->config($apiKey);
         $this->options = $this->getOptions($options);
+    }
+
+    /**
+     * Set your API key
+     * 
+     * @param string $key               require   Set your main API Key or Monitor-Specific API Keys (only getMonitors)
+     * @param bool   $noJsonCallback    optional  Define if the function wrapper to be removed
+     * 
+     */
+    private function config($key, $noJsonCallback = 1)
+    {
+        if (empty($key)) {
+            throw new Exception('Chave API não configurada.');
+        }
+
+        $this->args['apiKey'] = $key;
+        $this->args['format'] = 'json';
+        $this->args['noJsonCallback'] = $noJsonCallback;
+    }
+
+    /**
+     * Returns the API key
+     * 
+     */
+    public function getApiKey()
+    {
+        if (empty($this->args['apiKey']))
+        {
+            throw new Exception('Chave API não configurada.', 1);
+        }
+        return $this->args['apiKey'];
     }
 
     /**
@@ -62,7 +79,7 @@ class UptimeRobot{
             throw new \Exception('Ocorreu um erro ao fazer o pedido.');
         }
 
-        return json_decode($this->contents, true);
+        return json_decode($this->contents);
     }
 
     /**
@@ -125,5 +142,3 @@ class UptimeRobot{
         ];
     }
 }
-
-require_once 'UptimeRobot.php';
