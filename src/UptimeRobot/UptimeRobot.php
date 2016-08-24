@@ -1,11 +1,14 @@
-<?php namespace UptimeRobot;
+<?php
+namespace UptimeRobot;
 
 /**
  * Class API
  * @package UptimeRobot
  */
-class API extends Functions{
-    private $url;
+class UptimeRobot{
+    use UptimeFunctions;
+
+    private $url = 'http://api.uptimerobot.com';
     private $contents;
 
     private $args;
@@ -27,16 +30,10 @@ class API extends Functions{
             throw new \Exception('Falta API Key');
         }
 
-        if (empty($config['url'])) {
-            throw new \Exception('Falta API url');
-        }
-
         // Setting apiKey, Format & noJsonCallBack
         $this->args['apiKey'] = $config['apiKey'];
         $this->args['format'] = 'json';
         $this->args['noJsonCallback'] = 1;
-
-        $this->url = $config['url'];
 
         // Set options for curl
         $this->options = $this->getOptions($options);
@@ -128,3 +125,5 @@ class API extends Functions{
         ];
     }
 }
+
+require_once 'UptimeRobot.php';
