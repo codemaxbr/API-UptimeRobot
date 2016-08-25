@@ -23,37 +23,14 @@ Inclua isso no seu arquivo composer.json
 
 ```PHP
 <?php
-//Requires composer install to work
+//Exec "composer install" ou "composer update" para trabalhar
 require_once(__DIR__.'/vendor/autoload.php');
 
-use UptimeRobot\API;
+use UptimeRobot\UptimeRobot;
 
-//Set configuration settings
-$config = [
-    'apiKey' => 'APIKEY',
-    'url' => 'http://api.uptimerobot.com'
-];
+//Definindo as configurações
+$upRobot = new UptimeRobot('u956-afus321g565fghr519'); //<-- sua chave
 
-try {
-
-    //Initalizes API with config options
-    $api = new API($config);
-
-    //Define parameters for our getMethod request
-    $args = [
-        'showTimezone' => 1
-    ];
-
-    //Makes request to the getMonitor Method
-    $results = $api->request('/getMonitors', $args);
-
-    //Output json_decoded contents
-    var_dump($results);
-
-} catch (Exception $e) {
-    echo $e->getMessage();
-    //Output various debug information
-    var_dump($api->debug);
-}
+print_r($upRobot->getMonitors());
 
 ```
