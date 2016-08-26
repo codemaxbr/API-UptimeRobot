@@ -15,13 +15,25 @@ trait UptimeFunctions{
 		}
 	}
 
+	public function getMonitorURL($host = ''){
+		if(empty($host)){
+			return $this->request('/getMonitors', []);
+		}else{
+			$args = array(
+				'search' => $host
+			);
+
+			return $this->request('/getMonitors', $args);
+		}
+	}
+
 	public function getUptime($id = ''){
 		if(empty($id)){
 			throw new Exception("Id Host é obrigatório", 1);
 		}
 
 		$result = $this->request('/getMonitors', ['monitors' => $id]);
-		return $result->monitors->monitor[0]->alltimeuptimeratio."%";
+		return (object) array('uptime' => $result->monitors->monitor[0]->alltimeuptimeratio."%", 'status' => $result->monitors->monitor[0]->status);
 	}
 
 	public function newMonitor($param = null){
