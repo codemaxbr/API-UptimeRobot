@@ -22,7 +22,7 @@ class UptimeRobot{
         }
 
         $this->config($apiKey);
-        $this->options = $this->getOptions($options);
+        $this->options = $this->getOptions();
     }
 
     /**
