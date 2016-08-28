@@ -89,7 +89,7 @@ class UptimeRobot{
      *
      * @return array
      */
-    private function getOptions($options)
+    private function getOptions($options = '')
     {
         $conf = [
             CURLOPT_HEADER => false,
